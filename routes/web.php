@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Sample\IndexController;
 use App\Http\Controllers\Tweet\CreateController;
+use App\Http\Controllers\Tweet\DeleteController;
 use App\Http\Controllers\Tweet\IndexController as TweetIndexController;
 use App\Http\Controllers\Tweet\Update\IndexController as UpdateIndexController;
 use App\Http\Controllers\Tweet\Update\PutController;
@@ -57,3 +58,8 @@ Route::put(
 )
     ->name('tweet.update.put')
     ->where('tweetId', '[0-9]+');
+Route::delete(
+    '/tweet/delete/{tweetId}',
+    DeleteController::class
+)
+    ->name('tweet.delete');
