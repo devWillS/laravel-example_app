@@ -3,6 +3,8 @@
 use App\Http\Controllers\Sample\IndexController;
 use App\Http\Controllers\Tweet\CreateController;
 use App\Http\Controllers\Tweet\IndexController as TweetIndexController;
+use App\Http\Controllers\Tweet\Update\IndexController as UpdateIndexController;
+use App\Http\Controllers\Tweet\Update\PutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,9 +35,25 @@ Route::get(
 Route::get(
     '/tweet',
     TweetIndexController::class
-)->name('tweet.index');
+)
+    ->name('tweet.index');
 
 Route::post(
     '/tweet/create',
     CreateController::class
-)->name('tweet.create');
+)
+    ->name('tweet.create');
+
+Route::get(
+    '/tweet/update/{tweetId}',
+    UpdateIndexController::class
+)
+    ->name('tweet.update.index')
+    ->where('tweetId', '[0-9]+');
+
+Route::put(
+    '/tweet/update/{tweetId}',
+    PutController::class
+)
+    ->name('tweet.update.put')
+    ->where('tweetId', '[0-9]+');
