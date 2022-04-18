@@ -27,7 +27,6 @@ Route::get(
     '/sample',
     [IndexController::class, 'show']
 );
-
 Route::get(
     '/sample/{id}',
     [IndexController::class, 'showId']
@@ -63,3 +62,9 @@ Route::delete(
     DeleteController::class
 )
     ->name('tweet.delete');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
