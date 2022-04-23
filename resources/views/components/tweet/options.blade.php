@@ -34,13 +34,13 @@
 @push('css')
     <style>
         .tweet-option > summary {
-            list-style: none;ß
+            list-style: none;
             cursor: pointer;
         }
         .tweet-option[open] > summary::before {
             position: fixed;
             top: 0;
-            right: 0;ß
+            right: 0;
             bottom: 0;
             left: 0;
             z-index: 10;
