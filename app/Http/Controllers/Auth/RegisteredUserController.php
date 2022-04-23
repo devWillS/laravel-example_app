@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\NewUserIntroduction;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Mail\NewUserIntroduction;
+use Illuminate\Contracts\Mail\Mailer;
 
 class RegisteredUserController extends Controller
 {
@@ -51,6 +51,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($newUser);
 
+        // メールの送信処理を追加
         $allUser = User::get();
         foreach ($allUser as $user) {
             $mailer->to($user->email)

@@ -26,15 +26,15 @@ class CreateRequest extends FormRequest
         return [
             'tweet' => 'required|max:140',
             'images' => 'array|max:4',
-            'images*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 
+    // Requestクラスのuser関数で今自分がログインしているユーザーが取得できる
     public function userId(): int
     {
         return $this->user()->id;
     }
-
 
     public function tweet(): string
     {

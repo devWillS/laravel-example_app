@@ -108,6 +108,7 @@ return [
     |
     */
 
+    //    'faker_locale' => 'en_US',
     'faker_locale' => 'ja_JP',
 
     /*
@@ -191,7 +192,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        // ...
     ])->toArray(),
 
 ];

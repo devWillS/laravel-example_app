@@ -2,24 +2,25 @@
 
 namespace App\Services;
 
-use App\Models\Image;
 use App\Models\Tweet;
-use App\Modules\ImageUpload\ImageManagerInterface;
 use Carbon\Carbon;
+use App\Models\Image;
+use App\Modules\ImageUpload\ImageManagerInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class TweetService
 {
-    
     public function __construct(private ImageManagerInterface $imageManager)
-    {}
+    {
+    }
 
     public function getTweets()
     {
         return Tweet::with('images')->orderBy('created_at', 'DESC')->get();
     }
 
+    // 自分のtweetかどうかをチェックするメソッド
     public function checkOwnTweet(int $userId, int $tweetId): bool
     {
         $tweet = Tweet::where('id', $tweetId)->first();
@@ -29,14 +30,12 @@ class TweetService
 
         return $tweet->user_id === $userId;
     }
-
     public function countYesterdayTweets(): int
     {
         return Tweet::whereDate('created_at', '>=', Carbon::yesterday()->toDateTimeString())
             ->whereDate('created_at', '<', Carbon::today()->toDateTimeString())
             ->count();
     }
-
     public function saveTweet(int $userId, string $content, array $images)
     {
         DB::transaction(function () use ($userId, $content, $images) {
@@ -53,7 +52,6 @@ class TweetService
             }
         });
     }
-
     public function deleteTweet(int $tweetId)
     {
         DB::transaction(function () use ($tweetId) {

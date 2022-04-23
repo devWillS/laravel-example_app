@@ -16,8 +16,6 @@ class SampleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        /** 前に処理をはさみたい場合ここに記述する **/
         return $next($request);
-        /** 後に処理をはさみたい場合ここに記述する **/
     }
 }
